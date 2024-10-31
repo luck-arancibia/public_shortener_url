@@ -1,6 +1,5 @@
 package com.meli.shortener.url.services.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import javax.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -17,13 +16,11 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Data
 public class UrlEntry {
 
-  @JsonIgnore
   @Id
   private String id;
   @NotNull
   @Indexed
   private String url;
-  @JsonIgnore
   @Indexed
   @NotNull
   private String hash;

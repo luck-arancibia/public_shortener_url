@@ -1,5 +1,6 @@
 package com.meli.shortener.url.services.adapters.web;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.meli.shortener.url.services.application.port.in.CreateEntry;
 import com.meli.shortener.url.services.domain.UrlEntry;
 import com.newrelic.api.agent.NewRelic;
@@ -10,6 +11,7 @@ import java.net.URI;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
@@ -34,15 +36,16 @@ public class PostUrlEntryController {
       value = "/entry",
       produces = MediaType.APPLICATION_JSON_VALUE)
   @Trace(dispatcher = true)
-  public ResponseEntity<UrlEntry> postEntry(
-      @RequestBody @Validated UrlDto urlDto) {
+  public ResponseEntity<EntryDto> postEntry(
+      @RequestBody @Validated UrlRequestDto urlDto) {
     UrlEntry urlEntry = createEntry.postByUrl(urlDto.ensureProtocol());
     NewRelic.addCustomParameter("hash", urlEntry.getHash());
-    return ResponseEntity.ok(urlEntry);
+    return ResponseEntity.ok(EntryDto.of(urlEntry.getUrl(), urlEntry.getShortUrl(),
+        urlEntry.getActive()));
   }
 
   @Data
-  static private class UrlDto {
+  static private class UrlRequestDto {
 
     @NotBlank(message = "URL is required")
     @Size(min = 3, max = 200)
@@ -56,5 +59,15 @@ public class PostUrlEntryController {
       }
       return uri.toString();
     }
+  }
+
+  @Data
+  @AllArgsConstructor(staticName = "of")
+  static class EntryDto {
+
+    private String url;
+    @JsonProperty("short_url")
+    private String shortUrl;
+    private Boolean active;
   }
 }

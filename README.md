@@ -252,6 +252,17 @@ Se considera que el servidor podría ser mejor, por ende se intenta con la prueb
 Visitar el script `src/main/stress/taurus.yml` para modificar, apto para probar en la nube y en local
 
 
+**Pruebas**
+
+Se adjunta colección de postman con dos ambientes: local & producción
+Visitar la carpeta `extras/postman`
+
+Se puede usar el swagger de los respectivos ambientes
+
+[swagger local](http://localhost:8080/swagger-ui/index.html)
+
+[swagger cloud](http://144.126.213.134:8080/swagger-ui/index.html)
+
 ## 🗨️ Contacto
 
 #### Email
