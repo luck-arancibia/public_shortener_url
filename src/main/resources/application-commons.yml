@@ -1,0 +1,26 @@
+management:
+  endpoints:
+    web:
+      exposure:
+        include: [ "prometheus" ]
+  health:
+    ping:
+      enabled: true
+    defaults:
+      enabled: false
+  endpoint:
+    health:
+      show-details: always
+      show-components: always
+commons:
+  http:
+    swagger:
+      api-info:
+        title: MeliTest
+        description:
+        version: 1.0.0
+        terms-of-service-url:
+        contact:
+          name: Meli
+          url: https://www.mercadolibre.com
+          email: support@mercadolibre.com

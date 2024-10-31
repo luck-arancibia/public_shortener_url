@@ -1,0 +1,5 @@
+spring:
+  data:
+    mongodb:
+      socketTimeout: 120000
+      uri: mongodb://admin:75380e5c6b9b97ad487445b788991fe23d7e798592c000c1@localhost:27017/entries?authSource=admin&retryWrites=true&w=majority&serverSelectionTimeoutMS=2000&connectTimeoutMS=2000

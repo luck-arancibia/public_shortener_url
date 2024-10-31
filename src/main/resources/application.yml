@@ -1,0 +1,14 @@
+server:
+  port: ${SERVICE_PORT:8080}
+spring:
+  profiles:
+    active: production
+    include:
+      - commons
+  application:
+    name: shortener-url
+
+logging:
+  level:
+    org:
+      springframework: DEBUG

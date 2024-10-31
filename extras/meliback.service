@@ -1,0 +1,11 @@
+  [Unit]
+  Description=ShortMs
+  After=syslog.target
+
+  [Service]
+  User=root
+  ExecStart=/usr/bin/java -jar -javaagent:/root/shortener_back/newrelic/newrelic.jar -Dnewrelic.environment=production -Dspring.profiles.active=production -XX:MaxRAMPercentage=75.0 -XX:MinRAMPercentage=75.0 -XX:InitialRAMPercentage=75.0 -jar -Dhttps.protocols=TLSv1.2 /root/shortener_back/build/libs/shortener-url-1.0.0.jar
+  SuccessExitStatus=143
+
+  [Install]
+  WantedBy=multi-user.target
