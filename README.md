@@ -289,6 +289,12 @@ Hay ejemplos de las respuestas en la lista de todos los registros y crear URL co
 
 ## 🗨️ Contacto
 
+Si tienes algún problema con el entorno de producción favor contáctame a este correo
+
+Nota: Me estoy asegurando de un uptime de 99.98%, pero si llegara a pasar algo justo en el momento en que estas revisando podría repararlo urgentemente.
+
+(Muchas gracias de antemano)
+
 #### Email
 `luciano.arancibiav@gmail.com`
 
