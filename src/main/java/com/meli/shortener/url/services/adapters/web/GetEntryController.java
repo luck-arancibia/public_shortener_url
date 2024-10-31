@@ -8,6 +8,7 @@ import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 @Api(tags = {"GetEntry"})
@@ -28,5 +29,16 @@ public class GetEntryController {
   public ResponseEntity<List<UrlEntry>> getEntries() {
     List<UrlEntry> urlEntries = loadEntry.getAll();
     return ResponseEntity.ok(urlEntries);
+  }
+
+  @ApiOperation(
+      value = "get Entry detail",
+      nickname = "GetEntryDetail",
+      response = UrlEntry.class)
+  @GetMapping(
+      value = "/entry/{id}",
+      produces = "application/json")
+  public ResponseEntity<UrlEntry> getEntries(@PathVariable("id") String id) {
+    return ResponseEntity.ok(loadEntry.findById(id));
   }
 }

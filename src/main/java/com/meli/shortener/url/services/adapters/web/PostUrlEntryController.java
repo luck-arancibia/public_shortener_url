@@ -8,6 +8,7 @@ import com.newrelic.api.agent.Trace;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import java.net.URI;
+import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
@@ -24,6 +25,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Api(tags = {"PostEntry"})
 @RestController
 @RequiredArgsConstructor
+@Validated
 public class PostUrlEntryController {
 
   private final CreateEntry createEntry;
@@ -37,7 +39,7 @@ public class PostUrlEntryController {
       produces = MediaType.APPLICATION_JSON_VALUE)
   @Trace(dispatcher = true)
   public ResponseEntity<EntryDto> postEntry(
-      @RequestBody @Validated UrlRequestDto urlDto) {
+      @RequestBody @Valid UrlRequestDto urlDto) {
     UrlEntry urlEntry = createEntry.postByUrl(urlDto.ensureProtocol());
     NewRelic.addCustomParameter("hash", urlEntry.getHash());
     return ResponseEntity.ok(EntryDto.of(urlEntry.getUrl(), urlEntry.getShortUrl(),

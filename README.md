@@ -7,6 +7,7 @@
 - [Local Build](#-build)
 - [Escalabilidad](#-escalabilidad)
 - [Monitoreo](#-monitoreo)
+- [Postman collection](#pruebas)
 - [Contacto](#-contacto)
 
 ## 🚀 Requerimientos
@@ -220,11 +221,25 @@ Implementando el servicio en diferentes zonas se puede mejorar la latencia y mej
 Se utiliza [New Relic](https://newrelic.com/) para el monitoreo y dashboard de la solución
 
 La imagen a continuación presenta evidencia de utilizar el dashboard de New Relic para obtener la cantidad de veces que se utilizo el hash `72dc5b79`
-
 ![_](./extras/doc/newrelic_dashboard.png)
 
 > [!TIP]
 > De esta manera nos aprovechamos del system output del microservicio para ir a buscar esa información minimizando las interacciones con el microservicio
+
+Se utuliza New Relic para obtener estadísticas
+- Es posible trackear las urls y filtrar usando el panel query de New Relic
+- Utilizando el `custom attribute` `hash` y `result` fue posible trackear las query de direcciones por `hash` y por resultados por registros no encontrados y registros inactivos
+- Armando un dashboard es posible obtener información de Throughput, Tiempo de transacciones web, Apdex Score (satisfacción usuario), etc
+
+La imagen a continuación presenta un dashboard básico de un servicio de New Relic conectado con el Agente & Java Agent
+Las cuales permiten ver las estadísticas de:
+* Count redirects by hash
+* Count redirects by results
+  * Not found 
+  * Inactive
+  * Founded
+
+![_](./extras/doc/dashboard.png)
 
 
 **Prueba de estrés**
@@ -252,16 +267,25 @@ Se considera que el servidor podría ser mejor, por ende se intenta con la prueb
 Visitar el script `src/main/stress/taurus.yml` para modificar, apto para probar en la nube y en local
 
 
-**Pruebas**
+## Pruebas
 
 Se adjunta colección de postman con dos ambientes: local & producción
 Visitar la carpeta `extras/postman`
 
 Se puede usar el swagger de los respectivos ambientes
 
+Hay ejemplos de las respuestas en la lista de todos los registros y crear URL corta
+
 [swagger local](http://localhost:8080/swagger-ui/index.html)
 
 [swagger cloud](http://144.126.213.134:8080/swagger-ui/index.html)
+
+> [!NOTE]  
+> Se agrega un test en postman para guardar la url corta del servicio de crear URL
+> De esa manera se visita el servicio de redirección y se prueba muy rápido la redirección
+
+> Test guardado en Script Post New Entry 
+
 
 ## 🗨️ Contacto
 

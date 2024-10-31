@@ -6,11 +6,13 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.server.ResponseStatusException;
 
 @Api(tags = {"PutEntry"})
 @RestController
@@ -32,6 +34,9 @@ public class PutEntryController {
         urlEntry.getUrl(),
         urlEntry.getActive()
     );
+    if (entry == null) {
+      throw new ResponseStatusException(HttpStatus.NOT_FOUND, "entity not found");
+    }
     return ResponseEntity.ok(entry);
   }
 

@@ -20,10 +20,10 @@ public class UpdateEntryUseCase implements UpdateEntry {
     if (entry == null) {
       return null;
     }
-    if (entry.getActive() != active) {
+    if ( active != null && entry.getActive() != active) {
       entry.setActive(active);
     }
-    if (!entry.getUrl().equals(url)) {
+    if (url != null && !entry.getUrl().equals(url)) {
       entry.setUrl(url);
     }
     return putEntry.put(entry);
