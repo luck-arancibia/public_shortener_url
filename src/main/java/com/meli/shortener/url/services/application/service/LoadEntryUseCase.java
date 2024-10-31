@@ -53,6 +53,3 @@ public class LoadEntryUseCase implements LoadEntry {
     return getEntry.getAll();
   }
 }
-
-//#  user_key: 'NRAK-F77JMJQGI8CRH0O7Y0LM2IG5R46'
-//license_key: 'c9c3c999223e051690e945898dcbebc6FFFFNRAL'
